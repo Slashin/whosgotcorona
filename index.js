@@ -5,17 +5,8 @@ const cors = require('cors');
 const path = require('path');
 const axios = require("axios");
 const cheerio = require("cheerio");
-const googleimages = require('google-images');
-const client = new googleimages('009195267253572260316:qvgmrhyemaq', 'AIzaSyCiwJ_vHNSFv3b3scYHozq-HLgUQftJggo');
-const util = require('util');
 const People = require('./models/people');
 const Images = require('./models/images');
-
-var google_image = require('google-image-query');
-const rkgis = require('imagemagick')
-var searcher = require('google-image-searcher');
-var fotology = require("fotology");
-var gis = require('g-image-search');
 
 var Scraper = require('images-scraper');
 
