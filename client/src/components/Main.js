@@ -40,19 +40,19 @@ class Main extends React.Component {
             <div className="container">
 
             <InputGroup>
-                <Input onChange={evt=>this.onChange(evt.target.value)} placeholder="Search"/>
+                <Input onChange={evt=>this.onChange(evt.target.value)} placeholder="Search" id="searchInput"/>
                 <InputGroupAddon addonType="append" >
                 {/* <Button id="searchButton" color="secondary"><img src="images/search.svg" id="searchImg"/></Button> */}
                 </InputGroupAddon>
             </InputGroup>
 
-               <div className="row col-lg-12">
+               <div className="row">
                    {
                        this.state.data && this.state.data.map((elem)=>{
                             let name = elem[0].name.toLowerCase();
-                            let desc = elem[0].name.toLowerCase();
+                            let desc = elem[0].desc.toLowerCase();
                             if(name.includes(this.state.query) || desc.includes(this.state.query)) {
-                            return <div className="col-lg-3">
+                            return <div className="col-lg-3 col-md-4 col-sm-6 col-12">
                                         <div className="dataBox">
                                         <div className="profileImgBox"><img className="profileImg" src={elem[0].img ? elem[0].img : this.state.defaultImg} /></div>
                                         <div className="name">{elem[0].name}</div>

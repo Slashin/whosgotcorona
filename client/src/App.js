@@ -27,7 +27,7 @@ class App extends React.Component {
         return(
             <div>
                 <div id="navbar">
-                    <div id="navbarBrand"><img id="navBrandImg" src="images/logo.jpg"/></div>
+                    <div id="navbarBrand"><img id="navBrandImg" src="images/logo.JPG"/></div>
                 </div>
                 <Main/>
             </div>
