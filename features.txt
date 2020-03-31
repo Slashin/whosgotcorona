@@ -1,0 +1,16 @@
+LIFESTYLE
+    clock
+    calendar
+    weather
+    todo list
+
+VIEW UPCOMING EVENTS
+    upcoming events
+
+BUDGETING
+    budget (graphs)
+
+GAMES
+    chess
+
+
