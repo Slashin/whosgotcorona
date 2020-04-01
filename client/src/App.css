@@ -30,9 +30,30 @@
     margin-left: -6px;
 }
 
+#spinnerContainer{
+    margin-top:3rem;
+    text-align: center;
+}
+
+.subTitle{
+    margin-top: 3rem;
+    font-weight: lighter;
+}
+
+#deaths{
+    background-color: crimson;
+    color: white;
+}
+
+#infected{
+    background-color: goldenrod;
+    color: white;
+}
+
 .dataBox{
     margin: 1rem 0rem;
     background-color: rgb(233, 247, 252);
+    /* min-height: 25rem; */
 }
 
 .profileImg{
@@ -74,11 +95,12 @@
     #searchInput{
         font-size: 2.5rem;
     }
-    /* #root{
-        width: 100%;
-    } */
+    .subTitle{
+        font-size: 5rem;
+        text-align: center;
+        margin-top: 5rem;
+    }
 }
-
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 576px) {
     #navbarBrand{

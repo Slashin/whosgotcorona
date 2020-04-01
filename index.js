@@ -8,15 +8,39 @@ const cheerio = require("cheerio");
 const People = require('./models/people');
 const Images = require('./models/images');
 
+
+
+const puppeteer = require('puppeteer');
+const fs = require('fs');
+
+async function getImage(pageQuery) {
+    const browser = await puppeteer.launch({
+        headless: true
+    });
+    const page = await browser.newPage();
+    await page.setViewport({ width: 1200, height: 1200 });
+    await page.setDefaultNavigationTimeout(0); 
+    await page.goto(pageQuery);
+
+    const IMAGE_SELECTOR = '#islmp img:nth-child(1)';
+    let imageHref = await page.evaluate((sel) => {
+        return document.querySelector(sel).getAttribute('src');
+    }, IMAGE_SELECTOR);
+
+    browser.close();
+    return(imageHref);
+}
+
 var Scraper = require('images-scraper');
 
 require('events').EventEmitter.defaultMaxListeners = 100;
  
-const google = new Scraper({
-  puppeteer: {
-    headless: true,
-  }
-});
+// const google = new Scraper({
+//   puppeteer: {  
+//     headless: true,
+//   },
+//   timeout: 50000
+// });
 
 // var gis = require('g-i-s');
 
@@ -55,8 +79,9 @@ if(process.env.NODE_ENV === 'production'){
 }
 
 const siteUrl = "https://www.aljazeera.com/news/2020/03/coronavirus-pandemic-politicians-celebs-affected-200315165416470.html";
-// let query = "barack obama"
-// let imgSiteUrl = 'https://www.google.com/search?q=' + query + '&tbm=isch';
+// const siteUrl = "https://www.nytimes.com/article/coronavirus-celebrities-actors-politicians.html";
+let query = "barack obama"
+let imgSiteUrl = 'https://www.google.com/search?q=' + query + '&tbm=isch';
 
 const fetchData = async () => {
   const result = await axios.get(siteUrl);
@@ -105,36 +130,59 @@ const fetchData = async () => {
   // Person.save().then(user=>console.log(user));
   People.update(
     {data:arr3}
-  ).then(()=>console.log('People Updated'))
-  console.log(arr3.length);
-  fetchImgs(arr3);
-};
+  ).then(()=>{
+    let imgarr = [];
+    arr3.map((elem)=>{
+      let imgSiteUrl = 'https://www.google.com/search?q=' + elem.name + '&tbm=isch';
+      getImage(imgSiteUrl).then((value)=>{
+        // console.log()
+        console.log("image found " + value.substring(0,10));
+        imgarr.push({name: elem.name, image: value});
+            Images.update( 
+              {images: imgarr}
+          ).then(()=>console.log('Images Updated'))
 
-let imgarr = [];
-
-const fetchImgs = (arr3) => {
-  arr3.map((elem)=>{
-    google.scrape(elem.name, 1).then((results)=>{
-      console.log(results);
-      imgarr.push({name: elem.name, image: results[0].url});
-      Images.update( 
-        {images: imgarr}
-    ).then(()=>console.log('Images Updated'))
-      // const Image = new Images({
-      //   images: imgarr
-      // });
-      // Image.save().then(images=>console.log(images));
+      })
+      // console.log(value);
     })
+    
   })
-  // const Image = new Images({
-  //   images: imgarr
-  // });
-  // Image.save().then(images=>console.log(images));
+  
+
   
 };
 
 
+const fetchImgs = async(arr3) => {
+
+  
+  // arr3.map((elem)=>{
+  //   google.scrape(elem.name, 1).then((results)=>{
+  //     console.log(results);
+  //     imgarr.push({name: elem.name, image: results[0].url});
+  //     Images.update( 
+  //       {images: imgarr}
+  //   ).then(()=>console.log('Images Updated'))
+  //     // const Image = new Images({
+  //     //   images: imgarr
+  //     // });
+  //     // Image.save().then(images=>console.log(images));
+  //   })
+  // })
+  // // const Image = new Images({
+  // //   images: imgarr
+  // // });
+  // // Image.save().then(images=>console.log(images));
+  
+};
+
+
+
+
+
 // fetchData();
+
+// fetchImgs();
 
 app.listen(PORT, (err)=>{
     console.log(`Listening on port ${PORT}`);
