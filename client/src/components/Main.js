@@ -28,9 +28,23 @@ class Main extends React.Component {
             let dead = data.filter((elem)=>{
                 return elem[0].desc.toLowerCase().includes("died");
             });
+            // let latest = dead.filter((elem)=>{
+            //     return elem[0].latest;
+            // });
+            // let old = dead.filter((elem)=>{
+            //     return !elem[0].latest;
+            // });
+            // let finalDead = latest.concat(old);
             let infected = data.filter((elem)=>{
                 return !elem[0].desc.toLowerCase().includes("died");
             });
+            // latest = infected.filter((elem)=>{
+            //     return elem[0].latest;
+            // });
+            // old = infected.filter((elem)=>{
+            //     return !elem[0].latest;
+            // });
+            // let finalInfected = latest.concat(old);
 
             this.setState({dead, infected, loading:false});
         }).catch(err=>{
