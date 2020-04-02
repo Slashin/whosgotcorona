@@ -23,7 +23,7 @@ router.get("/", (req,res) => {
                     })
                     imageUrl  = currImg ? currImg.image : "";
                     // images[0].name == person.name;
-                    let currPerson = [{img:imageUrl, name:person.name, desc:person.desc}]
+                    let currPerson = [{img:imageUrl, name:person.name, desc:person.desc, latest:person.latest}]
                     arr.push(currPerson);
                     // console.log(count, " ", peopleData.length);
                     if(count>=peopleData.length){

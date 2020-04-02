@@ -24,6 +24,7 @@ class Main extends React.Component {
         axios.get(`db/people`)
         .then((response)=>{
             let data = response.data;
+            console.log(data);
             let dead = data.filter((elem)=>{
                 return elem[0].desc.toLowerCase().includes("died");
             });
@@ -78,9 +79,10 @@ class Main extends React.Component {
                             if(name.includes(this.state.query) || desc.includes(this.state.query)) {
                             return <div className="col-lg-3 col-md-4 col-sm-6 col-12">
                                         <div className="dataBox">
-                                        <div className="profileImgBox"><img className="profileImg" src={elem[0].img ? elem[0].img : this.state.defaultImg} /></div>
-                                        <div className="name">{elem[0].name}</div>
-                                        <div className="desc">{elem[0].desc}</div>
+                                            {elem[0].latest && (<div className="recentTag">Recent News</div>)}
+                                            <div className="profileImgBox"><img className="profileImg" src={elem[0].img ? elem[0].img : this.state.defaultImg} /></div>
+                                            <div className="name">{elem[0].name}</div>
+                                            <div className="desc">{elem[0].desc}</div>
                                         </div>
                                     </div>
                             }   
@@ -105,9 +107,10 @@ class Main extends React.Component {
                             if(name.includes(this.state.query) || desc.includes(this.state.query)) {
                             return <div className="col-lg-3 col-md-4 col-sm-6 col-12">
                                         <div className="dataBox">
-                                        <div className="profileImgBox"><img className="profileImg" src={elem[0].img ? elem[0].img : this.state.defaultImg} /></div>
-                                        <div className="name">{elem[0].name}</div>
-                                        <div className="desc">{elem[0].desc}</div>
+                                            {elem[0].latest && (<div className="recentTag">Recent News</div>)}
+                                            <div className="profileImgBox"><img className="profileImg" src={elem[0].img ? elem[0].img : this.state.defaultImg} /></div>
+                                            <div className="name">{elem[0].name}</div>
+                                            <div className="desc">{elem[0].desc}</div>
                                         </div>
                                     </div>
                             }
