@@ -2,14 +2,16 @@
     margin:0 auto;
     padding: 50px;
     max-width: 1000px;
-    background-color: rgb(253, 255, 248);
+    background-color: rgb(252, 239, 244);
 }
 
 #navbar{
     max-width: 1000px;
     margin: 0 auto;
     /* padding: 0 50px; */
-    background-color: #C4FF61;
+    background-color:white;
+    border-bottom: 5px solid #FF1C7E;
+    padding: 0.25rem;
 }
 
 #navbarBrand{
@@ -43,16 +45,20 @@
 #deaths{
     background-color: crimson;
     color: white;
+    padding: 0.5rem;
+    border-radius: 20px;
 }
 
 #infected{
     background-color: goldenrod;
     color: white;
+    padding: 0.5rem;
+    border-radius: 20px;
 }
 
 .dataBox{
     margin: 1rem 0rem;
-    background-color: rgb(233, 247, 252);
+    background-color: rgb(250, 250, 250);
     /* min-height: 25rem; */
 }
 
@@ -82,10 +88,12 @@
     text-align: center;
     font-size: 1.25rem;
     word-wrap: break-word;
+    margin-top: 0.5rem;
 }
 
 .desc{
     font-size: 1rem;
+    padding: 0rem 1rem 1rem 1rem;
 }
 
 /* Extra small devices (phones, 600px and down) */
@@ -142,6 +150,9 @@
     #searchInput{
         font-size: 1rem;
     }
+    .recentTag{
+        font-size: 25px;
+    }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
@@ -151,5 +162,8 @@
     }
     #searchInput{
         font-size: 1rem;
+    }
+    .recentTag{
+        font-size: 20px;
     }
 }

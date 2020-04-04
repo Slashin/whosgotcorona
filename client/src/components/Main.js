@@ -4,6 +4,9 @@ import axios from 'axios';
 import '../App.css'; 
 import ReactGA from 'react-ga';
 import Spinner from './Spinner';
+import LogRocket from 'logrocket';
+
+LogRocket.init('3w7o2h/whos-got-corona');
 
 ReactGA.initialize('UA-132593989-2');
 ReactGA.pageview(window.location.pathname + window.location.search);
