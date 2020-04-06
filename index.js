@@ -13,23 +13,23 @@ process.setMaxListeners(0);
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 
-async function getImage(pageQuery) {
-    const browser = await puppeteer.launch({
-        headless: true
-    });
-    const page = await browser.newPage();
-    await page.setViewport({ width: 1200, height: 1200 });
-    await page.setDefaultNavigationTimeout(0); 
-    await page.goto(pageQuery);
+// async function getImage(pageQuery) {
+//     const browser = await puppeteer.launch({
+//         headless: true
+//     });
+//     const page = await browser.newPage();
+//     await page.setViewport({ width: 1200, height: 1200 });
+//     await page.setDefaultNavigationTimeout(0); 
+//     await page.goto(pageQuery);
 
-    const IMAGE_SELECTOR = '#islmp img:nth-child(1)';
-    let imageHref = await page.evaluate((sel) => {
-        return document.querySelector(sel).getAttribute('src');
-    }, IMAGE_SELECTOR);
+//     const IMAGE_SELECTOR = '#islmp img:nth-child(1)';
+//     let imageHref = await page.evaluate((sel) => {
+//         return document.querySelector(sel).getAttribute('src');
+//     }, IMAGE_SELECTOR);
 
-    browser.close();
-    return(imageHref);
-}
+//     browser.close();
+//     return(imageHref);
+// }
 
 async function getImages(arr) {
   const browser = await puppeteer.launch({
@@ -187,7 +187,7 @@ const fetchData = async () => {
     if(match){
       let cleanmatch = match.replace(name, "");
       let latest = false;
-      if(cleanmatch.includes("April 1") || cleanmatch.includes("April 2")){
+      if(cleanmatch.includes("April 3") || cleanmatch.includes("April 4") || cleanmatch.includes("April 5") || cleanmatch.includes("April 6")){
         latest = true;
       }
       arr3.push({name, desc: cleanmatch, latest});

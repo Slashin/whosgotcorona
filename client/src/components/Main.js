@@ -27,10 +27,23 @@ class Main extends React.Component {
         axios.get(`db/people`)
         .then((response)=>{
             let data = response.data;
+            data.sort((a,b)=>b[0].latest-a[0].latest);
+
             console.log(data);
             let dead = data.filter((elem)=>{
                 return elem[0].desc.toLowerCase().includes("died");
             });
+            // let latest = [];
+            // let notLatest = [];
+            // dead.map((elem)=>{
+            //     if(elem[0].latest){
+            //         latest.push(elem);
+            //     }else{
+            //         notLatest.push(elem);
+            //     }
+            // })
+
+            // dead = latest.concat(notLatest);
             // let latest = dead.filter((elem)=>{
             //     return elem[0].latest;
             // });
@@ -41,6 +54,17 @@ class Main extends React.Component {
             let infected = data.filter((elem)=>{
                 return !elem[0].desc.toLowerCase().includes("died");
             });
+            // latest = [];
+            // notLatest = [];
+            // infected.map((elem)=>{
+            //     if(elem[0].latest){
+            //         latest.push(elem);
+            //     }else{
+            //         notLatest.push(elem);
+            //     }
+            // })
+
+            // infected = latest.concat(notLatest);
             // latest = infected.filter((elem)=>{
             //     return elem[0].latest;
             // });
