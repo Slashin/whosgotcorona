@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "aws-amplify": "^1.1.10",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "body-parser": "^1.18.3",
     "cheerio": "^1.0.0-rc.3",
     "concurrently": "^4.0.1",
